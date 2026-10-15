@@ -673,7 +673,7 @@ function measureO(){
 }
 function fit(el){
   const parent=el.parentElement,avail=parent.clientWidth-(parseFloat(getComputedStyle(parent).paddingLeft)+parseFloat(getComputedStyle(parent).paddingRight));
-  el.style.fontSize='100px';const rg=document.createRange();rg.selectNodeContents(el);const w=rg.getBoundingClientRect().width;
+  el.style.fontSize='100px';const kids=[...el.children],onlySpans=kids.length&&[...el.childNodes].every(n=>n.nodeType===1||!n.textContent.trim());let w;if(onlySpans){w=kids.reduce((s,k)=>s+k.offsetWidth+parseFloat(getComputedStyle(k).marginLeft||0)+parseFloat(getComputedStyle(k).marginRight||0),0)}else{const rg=document.createRange();rg.selectNodeContents(el);w=rg.getBoundingClientRect().width}
   const f=parseFloat(el.dataset.fit)||1,fk=f>1&&!DESK()?f*.78:f;el.style.fontSize=(100*avail*fk/w*.995)+'px';
 }
 function portals(el){
@@ -685,7 +685,7 @@ function portals(el){
     if(!p){p=document.createElement('span');p.className='portal';
       if(k==='brain'){p.innerHTML='<video muted loop playsinline preload="none"><source src="a/vid/brain.mp4" type=\'video/mp4; codecs="avc1.640028"\'><source src="a/vid/brain.webm" type="video/webm"></video>';io.observe(p.firstChild)}
       else p.innerHTML=`<img src="a/img/${k}${innerWidth<900?'-m':''}.webp" alt="" decoding="async">`;sp.prepend(p)}
-    const base=bl.getBoundingClientRect().top-sp.getBoundingClientRect().top;
+    const base=bl.offsetTop; /* layout value: immune to in-flight transforms */
     const pad=fs*.02,w=OM.hw*fs+pad*2,h=OM.hh*fs+pad*2;
     Object.assign(p.style,{left:(OM.cx*fs-w/2)+'px',top:(base-OM.cy*fs-h/2)+'px',width:w+'px',height:h+'px'});
   });
