@@ -253,15 +253,17 @@ footer .word{color:var(--paper)}
 .snd-on .eq i{animation:eq .9s ease-in-out infinite}
 .snd-on .eq i:nth-child(2){animation-delay:-.3s}.snd-on .eq i:nth-child(3){animation-delay:-.6s}
 @keyframes eq{0%,100%{height:3px}50%{height:10px}}
-#menu{position:fixed;inset:0;z-index:75;background:var(--ink);clip-path:circle(0% at 92% 4%);display:grid;grid-template-rows:1fr auto;padding:calc(env(safe-area-inset-top,0px) + 96px) var(--gutR) calc(env(safe-area-inset-bottom,0px) + 28px) var(--gut);visibility:hidden}
-#menu nav{display:flex;flex-direction:column;justify-content:center;gap:.5vh}
-#menu nav a{font-family:var(--f-display);font-weight:800;font-size:clamp(48px,8.6vw,150px);letter-spacing:-.05em;line-height:.95;text-decoration:none;color:var(--paper);display:flex;align-items:flex-start;gap:.3em;width:max-content;max-width:100%;transition:color .25s}
-#menu nav a small{font:600 12px/1 var(--f-text);letter-spacing:.12em;color:var(--mute);margin-top:.9em}
-#menu nav a:hover{color:var(--violet)}
-#menu .mfoot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
-#mportal{position:fixed;left:0;top:0;width:24vw;aspect-ratio:1;border-radius:50%;overflow:hidden;pointer-events:none;z-index:76;opacity:0;scale:.6;transition:opacity .3s,scale .4s}
+#menu{position:fixed;inset:0;z-index:75;background:var(--violet);clip-path:circle(0% at 92% 4%);display:grid;grid-template-rows:1fr auto;padding:calc(env(safe-area-inset-top,0px) + 96px) var(--gutR) calc(env(safe-area-inset-bottom,0px) + 28px) var(--gut);visibility:hidden}
+#menu nav{display:flex;flex-direction:column;justify-content:center;gap:clamp(4px,1.2vh,18px);max-width:62vw}
+#menu nav a{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,min(6.1vw,9.4vh),128px);letter-spacing:-.04em;line-height:1;text-decoration:none;color:#E9E1FF;display:flex;align-items:center;gap:0;width:max-content;max-width:100%;transition:color .25s,transform .45s cubic-bezier(.2,.8,.2,1)}
+#menu nav a small{font:700 12px/1 var(--f-text);letter-spacing:.12em;color:#E9E1FF;width:clamp(44px,4.2vw,84px);flex:none;opacity:.85}
+#menu nav a:hover,#menu nav a:focus-visible,#menu nav a.on{color:var(--ink);outline:none}#menu nav a:hover{transform:translateX(.25em)}
+#menu .mfoot{display:flex;flex-direction:column;align-items:flex-end;gap:10px;color:#fff;text-align:right}#menu .mfoot a{color:#fff;text-decoration:none}#menu .mfoot a:hover{color:var(--ink)}
+body.menu-open .cta-mini{opacity:0;pointer-events:none}body.menu-open .hud{mix-blend-mode:normal}body.menu-open #cur{background:#fff;mix-blend-mode:difference}#menu{grid-template-columns:minmax(0,1fr)}.cta-mini{transition:opacity .3s}
+#mportal{position:fixed;right:max(4vw,calc(var(--gutR) + 30px));top:50%;width:min(22vw,40vh);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:76;opacity:0;scale:.6;translate:0 -50%;transition:opacity .35s,scale .6s cubic-bezier(.2,.8,.2,1);outline:2px solid rgba(239,237,244,.7);outline-offset:clamp(8px,1vw,18px);background:#fff}
+#mportal img{border-radius:50%;transition:opacity .25s}
 #mportal.on{opacity:1;scale:1}
-#mportal img{width:100%;height:100%;object-fit:cover}
+#mportal img{width:100%;height:100%;object-fit:cover;display:block}
 #cur span{position:absolute;inset:0;display:grid;place-items:center;font:700 11px/1 var(--f-text);letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .2s}
 #cur.big span{opacity:1}
 #cur.big.lab{width:84px;height:84px;margin:-42px 0 0 -42px;background:var(--violet);mix-blend-mode:normal}
@@ -320,7 +322,8 @@ footer .word{color:var(--paper)}
   .hud nav{display:none}
   .grain{animation:none}
   .hud .snd .t,.hud .cta-mini{display:none}
-  #mportal{display:none}
+  #mportal{width:26vw;top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 40px);translate:0 0;right:var(--gutR)}
+  #menu nav{max-width:100%}#menu nav a{font-size:clamp(26px,7.6vw,56px)}#menu nav a small{width:36px;font-size:10px}#menu .mfoot{align-items:flex-start;text-align:left}
   .coords{display:none}
   .work-hr{align-items:flex-start}
   .look-sub{flex-direction:column;align-items:flex-start}
@@ -387,15 +390,16 @@ footer .word{color:var(--paper)}
 </header>
 <div id="menu" aria-hidden="true">
   <nav aria-label="Menu">
-    <a href="#services" data-go="#services" data-img="p-laser"><small>01</small>Services</a>
-    <a href="#work" data-go="#work" data-img="p-eye"><small>02</small>Work</a>
-    <a href="#process" data-go="#process" data-img="p-tunnel"><small>03</small>Process</a>
-    <a href="#team" data-go="#team" data-img="p-shades"><small>04</small>Team</a>
-    <a href="#contact" data-go="#contact" data-img="p-ufo"><small>05</small>Contact</a>
+    <a href="#hero" data-go="#hero" data-img="p-ufo"><small>01</small>Arrival</a>
+    <a href="#look" data-go="#look" data-img="p-skull"><small>02</small>Look closer</a>
+    <a href="#work" data-go="#work" data-img="p-eye"><small>03</small>Selected work</a>
+    <a href="#process" data-go="#process" data-img="p-tunnel"><small>04</small>Process</a>
+    <a href="#team" data-go="#team" data-img="p-shades"><small>05</small>Team</a>
+    <a href="#contact" data-go="#contact" data-img="p-alien"><small>06</small>Contact</a>
   </nav>
-  <div class="mfoot lbl"><span>hello@wooooo.studio</span><span>Branding · Motion</span><span>Concept project · Not a real agency</span></div>
+  <div class="mfoot lbl"><span>hello@wooooo.studio</span><span>Instagram · Telegram · Behance</span></div>
 </div>
-<div id="mportal" aria-hidden="true"><img src="a/img/p-ufo.webp" srcset="a/img/p-ufo-m.webp 480w, a/img/p-ufo.webp 900w" sizes="(max-width: 899px) 120px, 24vw" decoding="async" alt=""></div>
+<div id="mportal" aria-hidden="true"><img src="a/img/p-eye.webp" srcset="a/img/p-eye-m.webp 480w, a/img/p-eye.webp 900w" sizes="(max-width: 899px) 30vw, 22vw" decoding="async" alt=""></div>
 <div class="hud-b">
   <div class="scene lbl"><b id="sceneNo">01</b><span class="bar"><i id="sceneBar"></i></span><span id="sceneName">Arrival</span></div>
   <div class="lbl">Concept project · Not a real agency</div>
@@ -959,13 +963,14 @@ addEventListener('pointermove',e=>{
   eAx(dx/d*m);eAy(dy/d*m)},{passive:true});
 /* menu */
 const menu=$('#menu'),mbtn=$('#mbtn'),mp=$('#mportal'),mpi=$('#mportal img');let mOpen=false;
-function setMenu(o){mOpen=o;mbtn.setAttribute('aria-expanded',o);mbtn.textContent=o?'Close':'Menu';menu.setAttribute('aria-hidden',!o);
+function setMenu(o){mOpen=o;mbtn.setAttribute('aria-expanded',o);mbtn.textContent=o?'Close ✕':'Menu';menu.setAttribute('aria-hidden',!o);document.body.classList.toggle('menu-open',o);if(o){pickNav(navA[2]);setTimeout(()=>mOpen&&mp.classList.add('on'),RM?0:450)}
   if(o){gsap.set(menu,{visibility:'visible'});gsap.to(menu,{clipPath:'circle(150% at 92% 4%)',duration:RM?0:.9,ease:'power3.inOut'});gsap.fromTo('#menu nav a',{yPercent:60,opacity:0},{yPercent:0,opacity:1,stagger:.06,duration:.7,delay:RM?0:.25,ease:'power3.out'});lenis&&lenis.stop()}
   else{gsap.to(menu,{clipPath:'circle(0% at 92% 4%)',duration:RM?0:.7,ease:'power3.inOut',onComplete:()=>gsap.set(menu,{visibility:'hidden'})});mp.classList.remove('on');lenis&&lenis.start()}}
 mbtn.addEventListener('click',()=>setMenu(!mOpen));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&mOpen)setMenu(false)});
-$$('#menu nav a').forEach(a=>{a.addEventListener('pointerenter',()=>{mpi.src=`a/img/${a.dataset.img}-m.webp`;mp.classList.add('on')});a.addEventListener('pointerleave',()=>mp.classList.remove('on'))});
-addEventListener('pointermove',e=>{if(mOpen)mp.style.transform=`translate(${e.clientX+40}px,${e.clientY-mp.offsetHeight/2}px)`},{passive:true});
+const navA=$$('#menu nav a');function pickNav(a){navA.forEach(x=>x.classList.toggle('on',x===a));const src=`a/img/${a.dataset.img}${innerWidth<900?'-m':''}.webp`;if(!mpi.src.endsWith(src.split('/').pop())){mpi.removeAttribute('srcset');gsap.fromTo(mp,{scale:.92},{scale:1,duration:.5,ease:'power3.out'});mpi.src=src}}
+navA.forEach(a=>{a.addEventListener('pointerenter',()=>pickNav(a));a.addEventListener('focus',()=>pickNav(a))});
+$('#menu nav').addEventListener('pointerleave',()=>pickNav(navA[2]));
 /* magnetic CTA */
 const ctaB=$('#cta'),ctaR=$('.cta-row');
 ctaR.addEventListener('pointermove',e=>{const b=ctaB.getBoundingClientRect();const dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2);gsap.to(ctaB,{x:dx*.28,y:dy*.4,duration:.4,ease:'power3'})});
